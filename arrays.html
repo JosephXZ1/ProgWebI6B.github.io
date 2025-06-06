@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays Asociativos con JavaScript</title>
+    <link rel="stylesheet" href="CSS/arrays.css">
+</head>
+<body>
+    
+        <div class="container">
+            <h1>Simulación de Array Asociativo (Objeto JS)</h1>
+            
+            <div class="form-group">
+                <label for="clave">Clave:</label>
+                <input type="text" id="clave" placeholder="Ej: nombre">
+            </div>
+            
+            <div class="form-group">
+                <label for="valor">Valor:</label>
+                <input type="text" id="valor" placeholder="Ej: Juan">
+            </div>
+            
+            <button onclick="agregarElemento()">Agregar</button>
+            <button onclick="buscarElemento()">Buscar por Clave</button>
+            
+            <div id="resultado"></div>
+            <div id="lista"></div>
+        </div>
+
+    <script>
+        // Objeto que simula un array asociativo
+        const arrayAsociativo = {};
+
+        function agregarElemento()
+        {
+            const clave = document.getElementById("clave").value;
+            const valor = document.getElementById("valor").value;
+
+            if (clave && valor) {
+                arrayAsociativo[clave] = valor;
+                document.getElementById("clave").value = "";
+                document.getElementById("valor").value = "";
+                mostrarElementos();
+            } else {
+                alert("¡Debes ingresar clave y valor!");
+            }
+        }
+
+        function buscarElemento()
+        {
+            const clave = document.getElementById("clave").value;
+            const resultadoDiv = document.getElementById("resultado");
+
+            if (clave && arrayAsociativo.hasOwnProperty(clave)) {
+                resultadoDiv.innerHTML = `<strong>${clave}:</strong> ${arrayAsociativo[clave]}`;
+            } else {
+                resultadoDiv.innerHTML = "¡Clave no encontrada!";
+            }
+        }
+
+        function mostrarElementos()
+        {
+            const listaDiv = document.getElementById("lista");
+            listaDiv.innerHTML = "<h3>Elementos almacenados:</h3>";
+
+            for (const clave in arrayAsociativo) {
+                listaDiv.innerHTML += `
+                    <div class="item">
+                        <strong>${clave}:</strong> ${arrayAsociativo[clave]}
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

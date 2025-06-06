@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="CSS/funciones.css">
+    <title>Funciones Comparativas</title>
+</head>
+<body>
+
+    <input id="genera" type="button" value="Generar" onclick="genera()" />
+    <div id="primero"></div>
+    <div id="segundo"></div>
+    <div class="clear"></div>
+    <input id="compara" type="button" value="Comparar" onclick="compara()" />
+    <div id="resultado"></div>
+
+    <script>
+        function genera()
+        {
+            const primero = document.getElementById('primero');
+            const segundo = document.getElementById('segundo');
+
+            primero.innerHTML = '';
+            segundo.innerHTML = '';
+
+            for (let i = 0; i < 10; i++)
+            {
+                const num1 = Math.floor(Math.random() * 100);
+                const num2 = Math.floor(Math.random() * 100);
+
+                primero.innerHTML += `<span>${num1}</span>`;
+                segundo.innerHTML += `<span>${num2}</span>`;
+            }
+        }
+
+        function compara()
+        {
+            const primero = document.getElementById('primero').getElementsByTagName('span');
+            const segundo = document.getElementById('segundo').getElementsByTagName('span');
+            const resultado = document.getElementById('resultado');
+
+            let iguales = 0;
+            let diferentes = 0;
+
+            for (let i = 0; i < primero.length; i++)
+            {
+                if (primero[i].textContent === segundo[i].textContent)
+                {
+                    iguales++;
+                }
+                else
+                {
+                    diferentes++;
+                }
+            }
+
+            resultado.textContent = `Iguales: ${iguales}, Diferentes: ${diferentes}`;
+        }
+    </script>
+</body>
+</html>
